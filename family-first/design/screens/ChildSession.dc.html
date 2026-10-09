@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Child's phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E4D3A}a:hover{color:#143628}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; font-family: 'Nunito', system-ui, sans-serif; color: #1F2D26; display: flex; flex-direction: column; overflow: hidden">
+
+  <div style="padding: 64px 24px 0; display: flex; align-items: center; gap: 12px">
+    <div style="width: 48px; height: 48px; border-radius: 50%; background: #F6D8C8; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: #7A3E1F">M</div>
+    <div style="display: flex; flex-direction: column">
+      <span style="font-size: 14px; color: #55665D; font-weight: 600">Hey there</span>
+      <span style="font-size: 22px; font-weight: 800; color: #1E4D3A">Maya</span>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 0 24px">
+    <div style="width: 240px; height: 240px; border-radius: 50%; background: {{ringBg}}; display: flex; align-items: center; justify-content: center">
+      <div style="width: 176px; height: 176px; border-radius: 50%; background: {{coreBg}}; display: flex; align-items: center; justify-content: center">
+        <sc-if value="{{isActive}}" hint-placeholder-val="{{ false }}">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        </sc-if>
+        <sc-if value="{{notActive}}" hint-placeholder-val="{{ true }}">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#1E4D3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </sc-if>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
+      <h1 style="margin: 0; font-size: 28px; font-weight: 800; color: #1E4D3A">{{headline}}</h1>
+      <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #4A5C53; max-width: 300px; text-wrap: balance">{{sub}}</p>
+    </div>
+  </div>
+
+  <div style="padding: 0 24px 48px; display: flex; flex-direction: column; gap: 12px">
+    <sc-if value="{{showStart}}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{start}}" style="background: #1E4D3A; color: #FFFFFF; border: none; font-family: inherit; font-weight: 800; font-size: 18px; border-radius: 999px; padding: 20px; cursor: pointer">{{startLabel}}</button>
+    </sc-if>
+    <sc-if value="{{isActive}}" hint-placeholder-val="{{ false }}">
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <button onClick="{{pause}}" style="background: #DDF3E8; color: #1E4D3A; border: none; font-family: inherit; font-weight: 800; font-size: 17px; border-radius: 999px; padding: 18px; cursor: pointer">Pause</button>
+        <button onClick="{{stop}}" style="background: #FFFFFF; color: #1E4D3A; border: 2px solid #1E4D3A; font-family: inherit; font-weight: 800; font-size: 17px; border-radius: 999px; padding: 16px; cursor: pointer">Stop</button>
+      </div>
+    </sc-if>
+    <span style="font-size: 13px; color: #55665D; text-align: center">Your grown-up gets a note if protection stops. They never see your messages.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'ready' };
+  }
+  renderVals() {
+    const m = this.state.mode;
+    const copy = {
+      ready: ['Ready when you are', 'Tap start to turn on protection for this phone.', 'Start protection'],
+      active: ['Protection is on', 'Started at 3:12 PM. You can pause any time.', ''],
+      paused: ['Protection is paused', 'Paused at 3:40 PM. Your grown-up has been told.', 'Resume protection'],
+      stopped: ['Protection is off', 'Stopped at 3:41 PM. Your grown-up has been told.', 'Start again']
+    }[m];
+    const active = m === 'active';
+    return {
+      headline: copy[0],
+      sub: copy[1],
+      startLabel: copy[2],
+      isActive: active,
+      notActive: !active,
+      showStart: !active,
+      ringBg: active ? '#DDF3E8' : '#F3F5F4',
+      coreBg: active ? '#1E4D3A' : '#FFFFFF',
+      start: () => this.setState({ mode: 'active' }),
+      pause: () => this.setState({ mode: 'paused' }),
+      stop: () => this.setState({ mode: 'stopped' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Welcome</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E4D3A}a:hover{color:#143628}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; font-family: 'Nunito', system-ui, sans-serif; color: #1F2D26; display: flex; flex-direction: column; overflow: hidden">
+
+  <div style="height: 470px; background: #DDF3E8; border-radius: 0 0 48px 48px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 24px 32px; gap: 18px; position: relative">
+    <div style="position: absolute; top: 64px; left: 24px; display: flex; align-items: center; gap: 8px">
+      <div style="width: 34px; height: 34px; border-radius: 11px; background: #1E4D3A; display: flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DDF3E8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>
+      </div>
+      <span style="font-weight: 800; font-size: 18px; color: #1E4D3A">Family First</span>
+    </div>
+    <div style="width: 300px; height: 300px; border-radius: 50%; background: #BFE8D3; border: 8px solid #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; box-sizing: border-box">
+      <svg width="190" height="132" viewBox="0 0 160 112" fill="none" stroke="#1E4D3A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Family of three"><circle cx="40" cy="30" r="12"></circle><circle cx="80" cy="20" r="14"></circle><circle cx="120" cy="30" r="12"></circle><path d="M20 104V76a20 22 0 0 1 40 0v28"></path><path d="M56 104V70a24 26 0 0 1 48 0v34"></path><path d="M100 104V76a20 22 0 0 1 40 0v28"></path></svg>
+    </div>
+  </div>
+
+  <div style="padding: 32px 28px 40px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1">
+    <h1 style="margin: 0; font-size: 32px; line-height: 1.15; font-weight: 800; color: #1E4D3A; letter-spacing: -0.5px">Peace of mind for the whole family</h1>
+    <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #4A5C53">See exactly what's keeping your kids safe online, and know right away if anything changes.</p>
+    <div style="flex-grow: 1"></div>
+    <a href="Main.dc.html" style="background: #1E4D3A; color: #FFFFFF; text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 999px; padding: 18px; text-align: center">I'm a parent</a>
+    <a href="ChildSession.dc.html" style="background: #FFFFFF; color: #1E4D3A; text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 999px; padding: 16px; text-align: center; border: 2px solid #1E4D3A">This is my child's phone</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
