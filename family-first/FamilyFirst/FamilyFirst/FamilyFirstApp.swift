@@ -15,11 +15,11 @@ enum DesignLaunch {
 
 struct RootView: View {
     @AppStorage("familyFirst.role") private var role = ""
+    /// Screenshot launches can pin a screen. Choosing a role on Welcome leaves that pin.
+    @State private var pinnedScreen: String? = DesignLaunch.screen
 
     var body: some View {
-        switch DesignLaunch.screen {
-        case "welcome":
-            welcome
+        switch pinnedScreen {
         case "home":
             ParentShell()
         case "detail":
@@ -28,6 +28,8 @@ struct RootView: View {
             ParentShell(initialTab: .alerts)
         case "session":
             ChildSessionView(child: DesignSample.maya)
+        case "welcome":
+            welcome
         default:
             stored
         }
@@ -47,8 +49,10 @@ struct RootView: View {
 
     private var welcome: some View {
         WelcomeView {
+            pinnedScreen = nil
             role = HouseholdRole.parent.rawValue
         } onChild: {
+            pinnedScreen = nil
             role = HouseholdRole.child.rawValue
         }
     }
